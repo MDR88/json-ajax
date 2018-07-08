@@ -22,6 +22,10 @@ btn.addEventListener("click", function() {
     ourRequest.send();
     //This will increment the AJAX link by one. 
     pageCounter++;
+    if (pageCounter > 3) {
+        btn.classList.add('hide-me');
+
+    }
 
 });
 // This function adds HTML to the DOM.
