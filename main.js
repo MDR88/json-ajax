@@ -20,7 +20,7 @@ btn.addEventListener("click", function() {
         renderHTML(ourData);
     };
     ourRequest.send();
-    //This will increment the AJAX link by one. 
+    //This will increment the AJAX link by one. Then I change the button class to hide it in CSS.
     pageCounter++;
     if (pageCounter > 3) {
         btn.classList.add('hide-me');
@@ -33,11 +33,31 @@ function renderHTML(data) {
     // I created a varible that holds a blank string. I created a loop to loop through my array, then I am calling my variable and concatenation a string with my array.
     let htmlString = "";
     for (i = 0; i < data.length; i++) {
-        htmlString += "<p>" + data[i].name + " is a " + data[i].species + ".</p>";
+        htmlString += "<p>" + data[i].name + " is a " + data[i].species + " that likes to eat ";
+
+        for (ii = 0; ii < data[i].foods.likes.length; ii++) {
+            if (ii === 0) {
+                htmlString += data[i].foods.likes[ii];
+
+            } else {
+                htmlString += " and " + data[i].foods.likes[ii];
+
+            }
+        }
+        htmlString += ' and dislikes ';
+
+        for (ii = 0; ii < data[i].foods.dislikes.length; ii++) {
+            if (ii === 0) {
+                htmlString += data[i].foods.dislikes[ii];
+
+            } else {
+                htmlString += " and " + data[i].foods.dislikelikes[ii];
+
+            }
+            htmlString += '.</p>'
+        }
+
+        //This refers to my ID on my div in my index.html. Then writes to it, the beforeend is where it will write, followed by a comma and the text I want to write to the DOM.
+        animalContainer.insertAdjacentHTML('beforeend', htmlString)
 
     }
-
-    //This refers to my ID on my div in my index.html. Then writes to it, the beforeend is where it will write, followed by a comma and the text I want to write to the DOM.
-    animalContainer.insertAdjacentHTML('beforeend', htmlString)
-
-}
